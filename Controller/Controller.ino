@@ -4,8 +4,6 @@
 #define xPin A2
 #define yPin A1
 
-bool pressed = false;
-
 int count = 0;
 
 void setup()
@@ -19,15 +17,11 @@ void setup()
 void loop()
 {
 
-	if(!pressed && digitalRead(buttonPin) == LOW)
+	byte serialOut = 0;
+
+	if(digitalRead(buttonPin) == LOW)
 	{
-		pressed = true;
-		Serial.println("Button Pressed");
-	}
-	if(pressed && digitalRead(buttonPin) == HIGH)
-	{
-		pressed = false;
-		Serial.println("Button Released");
+		serialOut |= buttonBit;
 	}
 
 	if(count % 20 == 0)
@@ -40,22 +34,25 @@ void loop()
 
 		if(xIn > 70)
 		{
-			Serial.println("RIGHT");
+			serialOut |= rightBit;
 		}
 		else if(xIn < 40)
 		{
-			Serial.println("LEFT");
+			serialOut |= leftBit;
 		}
 
 		if(yIn > 65)
 		{
-			Serial.println("FORWARD");
+			serialOut |= upBit;
 		}
 		else if(yIn < 30)
 		{
-
-			Serial.println("BACKWARDS");
+			serialOut |= downBit;
 		}
+		count = 0;
+
+		Serial.write(serialOut);
+
 	}
 	
 	count++;
