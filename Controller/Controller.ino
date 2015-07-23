@@ -35,9 +35,12 @@ void loop()
 		int xIn = analogRead(xPin);
 		int yIn = analogRead(yPin);
 
+		xIn = map(xIn, 0, 1023, 0, 100);
+		yIn = map(yIn, 0, 1023, 0, 100);
+
 		Serial.print("X: "); Serial.print(xIn);
 		Serial.print("\tY: "); Serial.println(yIn);
 	}
-
+	
 	count++;
 }
