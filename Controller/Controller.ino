@@ -5,8 +5,8 @@
 #define buttonPin 2
 #define xPin A3
 #define yPin A1
-#define greenPin 13
-#define yellowPin 7
+#define greenPin 7
+#define yellowPin 13 
 
 int count = 0;
 
