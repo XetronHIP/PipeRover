@@ -38,8 +38,24 @@ void loop()
 		xIn = map(xIn, 0, 1023, 0, 100);
 		yIn = map(yIn, 0, 1023, 0, 100);
 
-		Serial.print("X: "); Serial.print(xIn);
-		Serial.print("\tY: "); Serial.println(yIn);
+		if(xIn > 70)
+		{
+			Serial.println("RIGHT");
+		}
+		else if(xIn < 40)
+		{
+			Serial.println("LEFT");
+		}
+
+		if(yIn > 65)
+		{
+			Serial.println("FORWARD");
+		}
+		else if(yIn < 30)
+		{
+
+			Serial.println("BACKWARDS");
+		}
 	}
 	
 	count++;
