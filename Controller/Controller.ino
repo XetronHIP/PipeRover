@@ -33,11 +33,6 @@ void loop()
 
 	serialOut |= serialHeader;
 
-	if(digitalRead(buttonPin) == LOW)
-	{
-		serialOut |= buttonBit;
-	}
-
 	if(count % 20 == 0)
 	{
 		bool changed = false;
@@ -47,6 +42,12 @@ void loop()
 
 		xIn = map(xIn, 0, 1023, 0, 100);
 		yIn = map(yIn, 0, 1023, 0, 100);
+		
+		if(digitalRead(buttonPin) == LOW)
+		{
+			serialOut |= buttonBit;
+			changed = true;
+		}
 
 		if(xIn > 70)
 		{
