@@ -19,6 +19,8 @@ void loop()
 
 	byte serialOut = 0;
 
+	serialOut |= serialHeader;
+
 	if(digitalRead(buttonPin) == LOW)
 	{
 		serialOut |= buttonBit;
