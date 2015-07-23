@@ -6,6 +6,8 @@
 
 bool pressed = false;
 
+int count = 0;
+
 void setup()
 {
 	pinMode(buttonPin, INPUT_PULLUP);
@@ -27,4 +29,15 @@ void loop()
 		pressed = false;
 		Serial.println("Button Released");
 	}
+
+	if(count % 20 == 0)
+	{
+		int xIn = analogRead(xPin);
+		int yIn = analogRead(yPin);
+
+		Serial.print("X: "); Serial.print(xIn);
+		Serial.print("\tY: "); Serial.println(yIn);
+	}
+
+	count++;
 }
