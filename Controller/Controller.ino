@@ -1,7 +1,7 @@
 #include "../Flags.h"
 
 #define buttonPin 2
-#define xPin A2
+#define xPin A3
 #define yPin A1
 
 int count = 0;
