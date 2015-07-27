@@ -1,5 +1,3 @@
-#include <SoftwareSerial.h>
-
 #include "../Flags.h"
 
 #define solenoidPin 7
