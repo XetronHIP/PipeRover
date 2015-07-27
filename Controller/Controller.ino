@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+
 #include "../Flags.h"
 
 #define buttonPin 2
@@ -71,11 +73,9 @@ void loop()
 		}
 		count = 0;
 
-		#ifdef DEBUG
-		Serial.println(serialOut);
-		#else
+		// serialOut <<= 1;
+
 		Serial.write(serialOut);
-		#endif
 
 		lightOn = changed;
 	}

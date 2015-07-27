@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+
 #include "../Flags.h"
 
 #define solenoidPin 7
@@ -6,10 +8,13 @@
 bool solenoid = false;
 bool buttonPressed = false;
 
+char butter[64];
+
 void setup()
 {
 	pinMode(solenoidPin, OUTPUT);
 	pinMode(motorPin, OUTPUT);
+	pinMode(13, OUTPUT);
 
 	digitalWrite(solenoidPin, HIGH);
 
@@ -21,52 +26,32 @@ void loop()
 	if(!solenoid && buttonPressed)
 	{
 		digitalWrite(solenoidPin, LOW);
+		digitalWrite(solenoidPin, HIGH);
 		delay(200);
 		digitalWrite(solenoidPin, HIGH);
+		digitalWrite(solenoidPin, LOW);
 		solenoid = true;
 	}
 	else if(solenoid && !buttonPressed)
 	{
 		solenoid = false;
 	}
-}
 
-void SerialEvent()
-{
-	byte input = Serial.read();
-
-	#ifdef DEBUG
-	Serial.println(input);
-	#endif
-
-	if((input & serialHeader) == serialHeader)
+	while(Serial.available() > 0)
 	{
-		byte data = input & serialHeader;
 
-		if((data & buttonBit) == buttonBit)
+		byte input = Serial.readBytes(butter, 1);
+
+		input = butter[0]; 
+
+		if((input & upBit) == upBit)
 		{
-			Serial.println("Button Pressed");
+			Serial.println("UP");
+		}
+		if((input & buttonBit) == buttonBit)
+		{
 			buttonPressed = true;
 		}
-
-		if((data & leftBit) == leftBit)
-		{
-			Serial.println("Left Pressed");
-		}
-
-		if((data & rightBit) == rightBit)
-		{
-			Serial.println("Right Pressed");
-		}
-
-		if((data & upBit) == upBit)
-		{
-			Serial.println("Up Pressed");
-		}
-
-		if((data & downBit) == downBit)
-		{
-			Serial.println("Down Pressed");
-		}
+		Serial.println(input);
 	}
 }
