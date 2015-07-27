@@ -35,6 +35,10 @@ void SerialEvent()
 {
 	byte input = Serial.read();
 
+	#ifdef DEBUG
+	Serial.println(input);
+	#endif
+
 	if((input & serialHeader) == serialHeader)
 	{
 		byte data = input & serialHeader;

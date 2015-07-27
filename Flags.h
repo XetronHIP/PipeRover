@@ -1,6 +1,8 @@
 #ifndef FLAGS_H
 #define FLAGS_H
 
+#define DEBUG
+
 #define upBit		1
 #define downBit 	2
 #define leftBit 	4

@@ -1,7 +1,5 @@
 #include "../Flags.h"
 
-//#define DEBUG
-
 #define buttonPin 2
 #define xPin A3
 #define yPin A1
