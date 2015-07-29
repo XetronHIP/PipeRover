@@ -29,6 +29,7 @@ void loop()
 		digitalWrite(solenoidPin, HIGH);
 		digitalWrite(13, LOW);
 		solenoid = true;
+		Serial.println("Ding!");
 	}
 	else if(solenoid && !buttonPressed)
 	{
@@ -62,6 +63,10 @@ void loop()
 		{
 			buttonPressed = true;
 			Serial.println("Button Pressed");
+		}
+		else
+		{
+			buttonPressed = false;
 		}
 	}
 }
