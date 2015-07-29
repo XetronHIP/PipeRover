@@ -24,10 +24,10 @@ void loop()
 	if(!solenoid && buttonPressed)
 	{
 		digitalWrite(solenoidPin, LOW);
-		digitalWrite(solenoidPin, HIGH);
+		digitalWrite(13, HIGH);
 		delay(200);
 		digitalWrite(solenoidPin, HIGH);
-		digitalWrite(solenoidPin, LOW);
+		digitalWrite(13, LOW);
 		solenoid = true;
 	}
 	else if(solenoid && !buttonPressed)
@@ -46,10 +46,22 @@ void loop()
 		{
 			Serial.println("UP");
 		}
+		else if((input & downBit) == downBit)
+		{
+			Serial.println("DOWN");
+		}
+		if((input & leftBit) == leftBit)
+		{
+			Serial.println("LEFT");
+		}
+		else if((input & rightBit) == rightBit)
+		{
+			Serial.println("RIGHT");
+		}
 		if((input & buttonBit) == buttonBit)
 		{
 			buttonPressed = true;
+			Serial.println("Button Pressed");
 		}
-		Serial.println(input);
 	}
 }
