@@ -31,7 +31,7 @@ void loop()
 
 	serialOut |= serialHeader;
 
-	if(count % 20 == 0)
+	if(count % 100 == 0)
 	{
 		bool changed = false;
 
